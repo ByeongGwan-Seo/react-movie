@@ -1,0 +1,3 @@
+const API_KEY =
+  "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4MTUxNzFjZDYwMjYyY2NiZTljMzhkNWZjZDc4M2VmMCIsIm5iZiI6MTc0MzMyNjI2Mi42MDMwMDAyLCJzdWIiOiI2N2U5MGMzNjRmNzQxYzc1YmJjNjk4Y2UiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.VsvSVEd3edbBv1n5pHZw8sC787t3ANZkZfba53g1Ud4";
+const BASE_URL = "https://api.themoviedb.org/3";
