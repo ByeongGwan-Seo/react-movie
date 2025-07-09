@@ -1,6 +1,11 @@
 import { motion } from "motion/react";
 import styled from "styled-components";
 
+// styled-componentsの初文字は必ず大文字にします。
+/* 
+ホーム画面のコンポネントに使うstyled-componentです。
+このファイルが非常に長くなった場合はreadmeのストラクチャ作成規則を確認してください。
+*/
 export const Wrapper = styled.div`
   background-color: black;
 `;

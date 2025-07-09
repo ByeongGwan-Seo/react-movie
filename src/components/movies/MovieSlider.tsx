@@ -4,6 +4,26 @@ import * as HomeStyle from "../../styled-components/StyledHome";
 import type { GetMoviesResult } from "../../apis/movie_series_api";
 import { useState } from "react";
 
+/**
+ * スライダーのアニメーション状態を定義するvariants。
+ * ページの移動方向に応じて、左右にスライドする動きを制御します。
+ *
+ * @type {Variants}
+ * @param {boolean} isNext - 次ページへ移動する場合は `true`、前ページへ戻る場合は `false`。
+ *
+ * @property hidden - 初期状態。移動方向に応じて左右の画面外から登場。
+ * @property visible - 表示状態。中央に固定。
+ * @property exit - アニメーション終了時。反対方向にスライドして退場。
+ *
+ * @example
+ * <motion.div
+ *   custom={isNext}
+ *   variants={rowVariants}
+ *   initial="hidden"
+ *   animate="visible"
+ *   exit="exit"
+ * />
+ */
 const rowVariants = {
   hidden: (isNext: boolean) => {
     return {
@@ -55,9 +75,12 @@ type MovieSliderProps = {
 function MovieSlider({ data, title }: MovieSliderProps) {
   const [index, setIndex] = useState(0);
   const [isNext, setIsNext] = useState(true);
+
+  // ダブルクリック防止用state
   const [leaving, setLeaving] = useState(false);
   const toggleLeaving = () => setLeaving((prev) => !prev);
 
+  // スライダーの一行に表示する画像数(現在６個固定)
   const offset = 6;
 
   const nextIndex = () => {
@@ -90,6 +113,7 @@ function MovieSlider({ data, title }: MovieSliderProps) {
     }
   };
 
+  //スライダーのイメージ枚数ロジック
   const resultsData = data?.results
     .slice(1)
     .slice(offset * index, offset * index + offset);
