@@ -25,12 +25,9 @@ export function getMovies() {
     method: "GET",
     headers: {
       accept: "application/json",
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4MTUxNzFjZDYwMjYyY2NiZTljMzhkNWZjZDc4M2VmMCIsIm5iZiI6MTc0MzMyNjI2Mi42MDMwMDAyLCJzdWIiOiI2N2U5MGMzNjRmNzQxYzc1YmJjNjk4Y2UiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.VsvSVEd3edbBv1n5pHZw8sC787t3ANZkZfba53g1Ud4",
+      Authorization: `Bearer ${API_KEY}`,
     },
   };
-  console.log("API_KEY:", API_KEY);
-  console.log("BASE_URL:", BASE_URL);
   return fetch(
     `${BASE_URL}/movie/now_playing?region=jp&api_key=${API_KEY}`,
     options
