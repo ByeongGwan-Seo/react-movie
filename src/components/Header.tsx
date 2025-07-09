@@ -3,6 +3,7 @@ import { motion, useAnimation, useScroll } from "motion/react";
 import { Link, useRouteMatch } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+// TODO: リファクタリング必要、必要以上にコードが長い
 const Nav = styled(motion.nav)`
   display: flex;
   justify-content: space-between;

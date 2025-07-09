@@ -3,6 +3,9 @@ import Home from "./Routes/Home";
 import Tv from "./Routes/Tv";
 import Header from "./components/Header";
 
+/* 
+pathは必ず名詞で構成してください。do.searchかgo.tvなどは使わないで。。。
+*/
 function App() {
   return (
     <Router>
