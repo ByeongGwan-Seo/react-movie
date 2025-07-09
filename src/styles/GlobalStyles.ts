@@ -20,6 +20,8 @@ time, mark, audio, video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  -ms-overflow-style: none;
+  scrollbar-width: none; 
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -56,8 +58,13 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
   color:${(props) => props.theme.white.darker};
   line-height: 1.2;
-  
+  background-color: black;
+ 
 }
+html::-webkit-scrollbar {
+  display: none;           
+}
+
 a {
   text-decoration:none;
   color:inherit;
