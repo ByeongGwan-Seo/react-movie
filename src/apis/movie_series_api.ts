@@ -22,7 +22,8 @@ export interface GetMoviesResult {
   total_results: number;
 }
 
-export function getMovies() {
+export function getMovies(category: string) {
+  console.log(`🔄 getMovies() called with category: ${category}`);
   const options = {
     method: "GET",
     headers: {
@@ -31,7 +32,7 @@ export function getMovies() {
     },
   };
   return fetch(
-    `${BASE_URL}/movie/now_playing?region=jp&api_key=${API_KEY}`,
+    `${BASE_URL}/movie/${category}?region=jp&api_key=${API_KEY}`,
     options
   ).then((response) => response.json());
 }
