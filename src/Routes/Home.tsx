@@ -35,8 +35,9 @@ const Banner = styled.div.withConfig({
 `;
 
 const Title = styled.h2`
-  font-size: 68px;
+  font-size: 72px;
   margin-bottom: 24px;
+  font-weight: bold;
 `;
 
 const OverView = styled.p`
@@ -76,7 +77,54 @@ const Box = styled(motion.div).withConfig({
   background-image: url(${(props) => props.bgPhoto});
   background-size: cover;
   background-position: center center;
+  &:first-child {
+    transform-origin: center left;
+  }
+
+  &:last-child {
+    transform-origin: center right;
+  }
 `;
+
+const Info = styled(motion.div)`
+  padding: 10px;
+  background-color: ${(props) => props.theme.black.lighter};
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  h4 {
+    text-align: center;
+    font-size: 18px;
+  }
+`;
+
+const boxVariants = {
+  normal: {
+    scale: 1,
+  },
+  hover: {
+    scale: 1.3,
+    y: -50,
+    transition: {
+      type: "tween" as const,
+      ease: "linear" as const,
+      delay: 0.05,
+      duration: 0.1,
+    },
+  },
+};
+
+const infoVariants = {
+  hover: {
+    opacity: 1,
+    transition: {
+      delay: 0.15,
+      duaration: 0.1,
+      type: "tween" as const,
+    },
+  },
+};
 
 const offset = 6;
 
@@ -88,7 +136,7 @@ function Home() {
       if (leaving) return;
       toggleLeaving();
       const totalMovies = data.results.length;
-      const maxIndex = Math.ceil(totalMovies / offset) - 1;
+      const maxIndex = Math.floor(totalMovies / offset) - 1;
       setIndex((prev) => (prev === maxIndex ? 0 : prev + 1));
     }
   };
@@ -111,7 +159,11 @@ function Home() {
             onClick={increaseIndex}
             bgPhoto={makeImagePath(data?.results[0].backdrop_path || "")}
           >
-            <Title>{data?.results[0].title}</Title>
+            <Title>
+              {data?.results[0].original_language === "en"
+                ? data.results[0].title
+                : data?.results[0].original_title}
+            </Title>
             <OverView>{data?.results[0].overview}</OverView>
           </Banner>
           <Slider>
@@ -122,7 +174,7 @@ function Home() {
                 animate="visible"
                 exit="exit"
                 key={index}
-                transition={{ type: "tween", ease: "linear", duration: 1 }}
+                transition={{ type: "tween", ease: "linear", duration: 0.5 }}
               >
                 {data?.results
                   .slice(1)
@@ -130,8 +182,23 @@ function Home() {
                   .map((movie) => (
                     <Box
                       key={movie.id}
-                      bgPhoto={makeImagePath(movie.backdrop_path, "w500")}
-                    />
+                      whileHover="hover"
+                      initial="normal"
+                      variants={boxVariants}
+                      transition={{ type: "tween" }}
+                      bgPhoto={makeImagePath(
+                        movie.backdrop_path || movie.poster_path,
+                        "w500"
+                      )}
+                    >
+                      <Info variants={infoVariants}>
+                        <h4>
+                          {movie.original_language === "en"
+                            ? movie.title
+                            : movie.original_title}
+                        </h4>
+                      </Info>
+                    </Box>
                   ))}
               </Row>
             </AnimatePresence>

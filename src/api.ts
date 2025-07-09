@@ -7,6 +7,8 @@ interface MovieInterface {
   poster_path: string;
   title: string;
   overview: string;
+  original_language: string;
+  original_title: string;
 }
 
 export interface GetMoviesResult {
