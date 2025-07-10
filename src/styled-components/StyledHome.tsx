@@ -1,8 +1,9 @@
 import { motion } from "motion/react";
 import styled from "styled-components";
 
-// styled-componentsの初文字は必ず大文字にします。
 /* 
+styled-componentsの初文字は必ず大文字にします。
+
 ホーム画面のコンポネントに使うstyled-componentです。
 このファイルが非常に長くなった場合はreadmeのストラクチャ作成規則を確認してください。
 */
@@ -10,6 +11,9 @@ export const Wrapper = styled.div`
   background-color: black;
 `;
 
+/**
+ * ページローディング画面
+ */
 export const Loader = styled.div`
   height: 20vh;
   display: flex;
@@ -17,6 +21,20 @@ export const Loader = styled.div`
   align-items: center;
 `;
 
+/**
+ * ホーム画面の上部に表示されるバナー部分のスタイルです。
+ * 背景画像にはデータの backdrop_path を使用します。
+ *
+ * @example
+ * <HomeStyle.Banner bgPhoto={makeImagePath(...)} />
+ *
+ * @remark
+ * CSSプロパティではない属性名をpropとして投げるとブラウザコンソールでエラーが表示されます。
+ * 必要な場合　shouldForwardPropを使ってください。
+ *
+ * @example
+ * styled.div.withConfig({shouldForwardProp: (prop) => prop !== "bgPhoto",})
+ */
 export const Banner = styled.div.withConfig({
   shouldForwardProp: (prop) => prop !== "bgPhoto",
 })<{ bgPhoto: string }>`
@@ -40,6 +58,14 @@ export const Title = styled.h2`
   font-weight: bold;
 `;
 
+/**
+ * バナーに表示される映画の概要
+ * 
+ * @example
+ * <HomeStyle.OverView>
+    {now_data?.results[0].overview}
+    </HomeStyle.OverView>
+ */
 export const OverView = styled.p`
   font-size: 28px;
   width: 50%;
