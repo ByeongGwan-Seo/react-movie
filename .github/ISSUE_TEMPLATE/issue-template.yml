@@ -1,0 +1,43 @@
+name: 📌 TODOチケット
+description: 今後の作業を記録するチケット
+title: "🔧 [TODO] "
+labels: [todo]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        🎯 **作業内容**
+        このIssueで何を達成したいか簡潔に記述してください。
+
+  - type: textarea
+    id: details
+    attributes:
+      label: ✅ 詳細説明
+      description: 現在の状況と改善内容を記入してください。
+      placeholder: |
+        - 現在の状況：◯◯
+        - 改善したい点：◯◯
+    validations:
+      required: true
+
+  - type: textarea
+    id: files
+    attributes:
+      label: 🧩 関連ファイル / コンポーネント
+      description: 該当するファイルやコンポーネントがあれば記述してください。
+
+  - type: dropdown
+    id: time
+    attributes:
+      label: ⏱️ 想定作業時間
+      options:
+        - 30分以内
+        - 1時間未満
+        - 1時間以上
+      default: 1
+
+  - type: textarea
+    id: links
+    attributes:
+      label: 🛠 参考リンク
+      description: デザインやAPIなどの参考リンクを記載
