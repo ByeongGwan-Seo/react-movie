@@ -56,7 +56,7 @@ export function getMovies(category: string) {
     },
   };
   return fetch(
-    `${BASE_URL}/movie/${category}?region=jp&api_key=${API_KEY}`,
+    `${BASE_URL}/movie/${category}?language=ja-JP&region=jp&api_key=${API_KEY}`,
     options
   ).then((response) => response.json());
 }
