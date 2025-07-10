@@ -101,3 +101,8 @@ docs: コメント・README更新
 - すべての関数に /** JSDocコメント */ を付けること
 - styled-componentsにも説明コメントを入れる
 - VSCode上でツールチップとして表示されるようにする
+
+---
+
+### その他
+- APIの詳細情報（レスポンスなど）の確認は[API ドキュメント](https://developer.themoviedb.org/reference/intro/getting-started)を確認
