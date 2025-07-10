@@ -78,7 +78,7 @@ npm run dev
 
 ---
 
-### 📝 コミットメッセージ規則（Optional）
+### 📝 ブランチ名・コミットメッセージ規則（Optional）
 
 ```bash
 feat: 新機能
