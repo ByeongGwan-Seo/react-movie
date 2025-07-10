@@ -29,6 +29,21 @@
 ![Vercel](https://img.shields.io/badge/Vercel-000?style=for-the-badge&logo=vercel&logoColor=white)
 ---
 
+# 機能一覧
+### 実装済み   
+- [x] [getMovies](https://developer.themoviedb.org/reference/movie-now-playing-list) APIから取得した映画リストをカテゴリ別スライダーに表示
+
+- [x] スライダーのアニメーション及びスライドボタンロジック作成
+
+- [x] ヘッダーのスクロールによるアニメーション
+
+### 実装予定
+- [ ] 映画idから映画の[詳細情報取得](https://developer.themoviedb.org/reference/movie-details)及び画面表示
+
+- [ ] 映画詳細情報のモーダル実装
+
+- [ ] 映画詳細情報の画面デザイン
+
 # 🤝 開発用ルール
 
 ### 🛠️ プロジェクト設定
@@ -89,6 +104,34 @@ fix: バグ修正
 refactor: リファクタリング
 style: スタイル・レイアウト調整
 docs: コメント・README更新
+```
+
+---
+
+### 📁 ディレクトリツリー
+```
+└── 📁src
+    └── 📁apis
+        ├── movie_series_api.ts
+    └── 📁assets
+        ├── react.svg
+    └── 📁components
+        └── 📁movies
+            ├── MovieSlider.tsx
+        ├── Header.tsx
+    └── 📁Routes
+        ├── Home.tsx
+        ├── Tv.tsx
+    └── 📁styled-components
+        ├── StyledHome.tsx
+    └── 📁styles
+        ├── GlobalStyles.ts
+    ├── App.tsx
+    ├── main.tsx
+    ├── styled.d.ts
+    ├── theme.ts
+    ├── utils.ts
+    └── vite-env.d.ts
 ```
 
 ---
