@@ -2,8 +2,9 @@ import { AnimatePresence, motion } from "motion/react";
 import { makeImagePath } from "../../utils";
 import * as HomeStyle from "../../styled-components/StyledHome";
 import type { GetMoviesResult } from "../../apis/movie_series_api";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useHistory, useRouteMatch } from "react-router-dom";
+import styled from "styled-components";
 
 /**
  * スライダーのアニメーション状態を定義するvariants。
@@ -73,6 +74,25 @@ type MovieSliderProps = {
   title: string;
 };
 
+const Overlay = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  z-index: 99;
+`;
+
+const BigMovie = styled(motion.div)`
+  position: fixed;
+  width: 40vw;
+  height: 80vh;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+`;
+
 function MovieSlider({ data, title }: MovieSliderProps) {
   const history = useHistory();
   const movieMatch = useRouteMatch<{ movieId: string }>("/movies/:movieId");
@@ -125,6 +145,18 @@ function MovieSlider({ data, title }: MovieSliderProps) {
     console.log(`movie id is ${movieId}`);
     history.push(`/movies/${movieId}`);
   };
+
+  const onOverlayClicked = () => {
+    history.push(`/`);
+  };
+
+  const clickedMovie = useMemo(() => {
+    if (!movieMatch?.params.movieId || !data) return null;
+    return data.results.find(
+      (movie) => String(movie.id) === movieMatch.params.movieId
+    );
+  }, [movieMatch?.params.movieId, data]);
+  console.log(clickedMovie);
 
   return (
     <>
@@ -184,20 +216,16 @@ function MovieSlider({ data, title }: MovieSliderProps) {
       </HomeStyle.Slider>
 
       <AnimatePresence>
-        {movieMatch ? (
-          <motion.div
-            style={{
-              position: "absolute",
-              width: "40vw",
-              height: "80vh",
-              backgroundColor: "red",
-              top: 100,
-              left: 0,
-              right: 0,
-              margin: "0 auto",
-            }}
-            layoutId={movieMatch.params.movieId}
-          ></motion.div>
+        {movieMatch && clickedMovie ? (
+          <Overlay
+            onClick={onOverlayClicked}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <BigMovie style={{ top: 100 }} layoutId={movieMatch.params.movieId}>
+              <>{clickedMovie.title}</>
+            </BigMovie>
+          </Overlay>
         ) : null}
       </AnimatePresence>
     </>
