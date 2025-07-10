@@ -1,6 +1,6 @@
 import type { DefaultTheme } from "styled-components";
 
-/* 
+/**  
 新しいテーマやプロパティを追加する場合は、
 styled.d.tsのinterfaceに追加する必要があります。
 */
