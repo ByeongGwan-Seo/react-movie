@@ -77,6 +77,7 @@ npm run dev
 - `.env`ファイルにAPIキーを記述し、Gitに含めないこと
 - `VITE_API_KEY`など、接頭語は `VITE_` を必須とする
 - 使用例: `import.meta.env.VITE_API_KEY`
+- ビルドするためにはVercelの `settings -> environment variables`で.envファイルをimportする必要あります。（大事）
 
 ---
 
