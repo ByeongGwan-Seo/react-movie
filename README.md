@@ -2,7 +2,7 @@
 このプロジェクトはNetflixのUI、[TMDB API](https://developer.themoviedb.org/reference/intro/getting-started)を用いた、現在日本で公開中、一番人気、今まで一番評価が高い映画をそれぞれのスライダーで表示する映画紹介Webアプリケーションです。
 
 # デモ
-![NetflixClone-Chrome2025-07-1010-47-24-ezgif com-crop](https://github.com/user-attachments/assets/f2ee8bd5-3783-46e9-838c-819911d34081)
+![NetflixClone-Chrome2025-07-1010-23-02-ezgif com-crop](https://github.com/user-attachments/assets/f94e989f-5a1d-42cb-b3a4-57a7bc268a28)
 
 [配信リンクはこちらへ](https://react-movie-rosy.vercel.app/)
 
