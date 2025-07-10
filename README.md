@@ -4,7 +4,7 @@
 # デモ
 ![NetflixClone-Chrome2025-07-1010-23-02-ezgif com-crop](https://github.com/user-attachments/assets/f94e989f-5a1d-42cb-b3a4-57a7bc268a28)
 
-[配信リンクはこちらへ](https://react-movie-rosy.vercel.app/)
+[配信リンクはこちらへ(日本語対応)](https://react-movie-rosy.vercel.app/)
 
 # 🛠️ 技術スタック
 
