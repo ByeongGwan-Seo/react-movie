@@ -2,9 +2,9 @@
 このプロジェクトはNetflixのUI、[TMDB API](https://developer.themoviedb.org/reference/intro/getting-started)を用いた、現在日本で公開中、一番人気、今まで一番評価が高い映画をそれぞれのスライダーで表示する映画紹介Webアプリケーションです。
 
 # デモ
-![NetflixClone-Chrome2025-07-1010-47-24-ezgif com-crop](https://github.com/user-attachments/assets/f2ee8bd5-3783-46e9-838c-819911d34081)
+![NetflixClone-Chrome2025-07-1010-23-02-ezgif com-crop](https://github.com/user-attachments/assets/f94e989f-5a1d-42cb-b3a4-57a7bc268a28)
 
-[配信リンクはこちらへ](https://react-movie-rosy.vercel.app/)
+[配信リンクはこちらへ(日本語対応)](https://react-movie-rosy.vercel.app/)
 
 # 🛠️ 技術スタック
 
@@ -23,9 +23,26 @@
 ![Styled Components](https://img.shields.io/badge/Styled--Components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
 
 ### 🎞️ アニメーション（Animation）
-![Framer Motion](https://img.shields.io/badge/Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)
+![Motion](https://img.shields.io/badge/Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)
 
+### ☁️ デプロイ (Deployment)
+![Vercel](https://img.shields.io/badge/Vercel-000?style=for-the-badge&logo=vercel&logoColor=white)
 ---
+
+# 機能一覧
+### 実装済み   
+- [x] [getMovies](https://developer.themoviedb.org/reference/movie-now-playing-list) APIから取得した映画リストをカテゴリ別スライダーに表示
+
+- [x] スライダーのアニメーション及びスライドボタンロジック作成
+
+- [x] ヘッダーのスクロールによるアニメーション
+
+### [実装予定(Github Issues)](https://github.com/ByeongGwan-Seo/react-movie/issues)
+- [ ] 映画idから映画の[詳細情報取得](https://developer.themoviedb.org/reference/movie-details)及び画面表示
+
+- [ ] 映画詳細情報のモーダル実装
+
+- [ ] 映画詳細情報の画面デザイン
 
 # 🤝 開発用ルール
 
@@ -75,6 +92,7 @@ npm run dev
 - `.env`ファイルにAPIキーを記述し、Gitに含めないこと
 - `VITE_API_KEY`など、接頭語は `VITE_` を必須とする
 - 使用例: `import.meta.env.VITE_API_KEY`
+- ビルドするためにはVercelの `settings -> environment variables`で.envファイルをimportする必要あります。（大事）
 
 ---
 
@@ -86,6 +104,34 @@ fix: バグ修正
 refactor: リファクタリング
 style: スタイル・レイアウト調整
 docs: コメント・README更新
+```
+
+---
+
+### 📁 ディレクトリツリー
+```
+└── 📁src
+    └── 📁apis
+        ├── movie_series_api.ts
+    └── 📁assets
+        ├── react.svg
+    └── 📁components
+        └── 📁movies
+            ├── MovieSlider.tsx
+        ├── Header.tsx
+    └── 📁Routes
+        ├── Home.tsx
+        ├── Tv.tsx
+    └── 📁styled-components
+        ├── StyledHome.tsx
+    └── 📁styles
+        ├── GlobalStyles.ts
+    ├── App.tsx
+    ├── main.tsx
+    ├── styled.d.ts
+    ├── theme.ts
+    ├── utils.ts
+    └── vite-env.d.ts
 ```
 
 ---
