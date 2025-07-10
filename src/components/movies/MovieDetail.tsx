@@ -7,6 +7,7 @@ import {
   getMovieDetails,
 } from "../../apis/movie_series_api";
 import { useEffect } from "react";
+import { makeImagePath } from "../../utils";
 
 type MovieDetailProps = {
   category?: string;
@@ -35,19 +36,29 @@ function MovieDetail({ id, category }: MovieDetailProps) {
 
   return (
     <>
-      {detailLoading ? null : (
+      {detailData && (
         <AnimatePresence>
           <ModalStyle.Overlay
             onClick={onClickOverlay}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            // initial="hidden"
+            // animate="visible"
+            // exit="exit"
           >
-            <ModalStyle.BigMovie
-              style={{ top: 100 }}
-              layoutId={String(detailData?.id)}
+            <ModalStyle.Modal
+              //   initial="initial"
+              //   animate="click"
+              //   exit="exit"
+              layoutId={category + "_" + id}
             >
-              <>{detailData?.title}</>
-            </ModalStyle.BigMovie>
+              {detailLoading ? null : (
+                <ModalStyle.ModalPoster
+                  bgphoto={makeImagePath(
+                    detailData.backdrop_path || detailData.poster_path,
+                    "w500"
+                  )}
+                />
+              )}
+            </ModalStyle.Modal>
           </ModalStyle.Overlay>
         </AnimatePresence>
       )}

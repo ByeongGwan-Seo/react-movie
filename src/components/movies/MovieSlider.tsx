@@ -2,7 +2,7 @@ import { AnimatePresence } from "motion/react";
 import { makeImagePath } from "../../utils";
 import * as HomeStyle from "../../styled-components/home/StyledHome";
 import type { GetMoviesResult } from "../../apis/movie_series_api";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { useHistory, useRouteMatch } from "react-router-dom";
 import MovieDetail from "./MovieDetail";
 
@@ -128,14 +128,6 @@ function MovieSlider({ data, title, category }: MovieSliderProps) {
     history.push(`/movies/${movieId}`);
   };
 
-  const clickedMovie = useMemo(() => {
-    if (!movieMatch?.params.movieId || !data) return null;
-    return data.results.find(
-      (movie) => String(movie.id) === movieMatch.params.movieId
-    );
-  }, [movieMatch?.params.movieId, data]);
-  console.log(clickedMovie);
-
   return (
     <>
       <HomeStyle.Slider>
@@ -158,7 +150,7 @@ function MovieSlider({ data, title, category }: MovieSliderProps) {
               resultsData.map((movie) => (
                 <HomeStyle.Box
                   key={category + movie.id}
-                  layoutId={movie.id + ""}
+                  layoutId={category + "_" + movie.id}
                   whileHover="hover"
                   initial="normal"
                   variants={boxVariants}
