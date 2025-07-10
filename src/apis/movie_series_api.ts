@@ -22,6 +22,30 @@ export interface GetMoviesResult {
   total_results: number;
 }
 
+export interface GetMovieDetailResult {
+  id: number;
+  backdrop_path: string;
+  genres: [
+    {
+      id: number;
+      name: string;
+    }
+  ];
+  original_title: string;
+  poster_path: string;
+  release_date: string;
+  tagline: string;
+  title: string;
+}
+
+const options = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization: `Bearer ${API_KEY}`,
+  },
+};
+
 /**
  * TMDB（The Movie Database）APIから指定カテゴリの映画データを取得する関数。
  *
@@ -48,15 +72,15 @@ export interface GetMoviesResult {
  * @see {@link https://developer.themoviedb.org/reference/movie-now-playing-list TMDB APIドキュメント（英語）}
  */
 export function getMovies(category: string) {
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization: `Bearer ${API_KEY}`,
-    },
-  };
   return fetch(
     `${BASE_URL}/movie/${category}?language=ja-JP&region=jp&api_key=${API_KEY}`,
+    options
+  ).then((response) => response.json());
+}
+
+export function getMovieDetails(id: string) {
+  return fetch(
+    `${BASE_URL}/movie/${id}?language=ja-JP&region=jp&api_key=${API_KEY}`,
     options
   ).then((response) => response.json());
 }

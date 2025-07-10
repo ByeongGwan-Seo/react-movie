@@ -1,10 +1,10 @@
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence } from "motion/react";
 import { makeImagePath } from "../../utils";
-import * as HomeStyle from "../../styled-components/StyledHome";
+import * as HomeStyle from "../../styled-components/home/StyledHome";
 import type { GetMoviesResult } from "../../apis/movie_series_api";
 import { useMemo, useState } from "react";
 import { useHistory, useRouteMatch } from "react-router-dom";
-import styled from "styled-components";
+import MovieDetail from "./MovieDetail";
 
 /**
  * スライダーのアニメーション状態を定義するvariants。
@@ -72,28 +72,10 @@ const infoVariants = {
 type MovieSliderProps = {
   data: GetMoviesResult | undefined;
   title: string;
+  category: string;
 };
 
-const Overlay = styled(motion.div)`
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  z-index: 99;
-`;
-
-const BigMovie = styled(motion.div)`
-  position: fixed;
-  width: 40vw;
-  height: 80vh;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
-`;
-
-function MovieSlider({ data, title }: MovieSliderProps) {
+function MovieSlider({ data, title, category }: MovieSliderProps) {
   const history = useHistory();
   const movieMatch = useRouteMatch<{ movieId: string }>("/movies/:movieId");
   const [index, setIndex] = useState(0);
@@ -146,10 +128,6 @@ function MovieSlider({ data, title }: MovieSliderProps) {
     history.push(`/movies/${movieId}`);
   };
 
-  const onOverlayClicked = () => {
-    history.push(`/`);
-  };
-
   const clickedMovie = useMemo(() => {
     if (!movieMatch?.params.movieId || !data) return null;
     return data.results.find(
@@ -172,14 +150,14 @@ function MovieSlider({ data, title }: MovieSliderProps) {
             initial="hidden"
             animate="visible"
             exit="exit"
-            key={index}
+            key={category + index}
             custom={isNext}
             transition={{ type: "tween", ease: "linear", duration: 0.5 }}
           >
             {resultsData &&
               resultsData.map((movie) => (
                 <HomeStyle.Box
-                  key={movie.id}
+                  key={category + movie.id}
                   layoutId={movie.id + ""}
                   whileHover="hover"
                   initial="normal"
@@ -215,19 +193,9 @@ function MovieSlider({ data, title }: MovieSliderProps) {
         </HomeStyle.NextBtn>
       </HomeStyle.Slider>
 
-      <AnimatePresence>
-        {movieMatch && clickedMovie ? (
-          <Overlay
-            onClick={onOverlayClicked}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <BigMovie style={{ top: 100 }} layoutId={movieMatch.params.movieId}>
-              <>{clickedMovie.title}</>
-            </BigMovie>
-          </Overlay>
-        ) : null}
-      </AnimatePresence>
+      {movieMatch ? (
+        <MovieDetail id={movieMatch.params.movieId} category={category} />
+      ) : null}
     </>
   );
 }
