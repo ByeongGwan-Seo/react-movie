@@ -37,7 +37,7 @@
 
 - [x] ヘッダーのスクロールによるアニメーション
 
-### 実装予定
+### [実装予定(Github Issues)](https://github.com/ByeongGwan-Seo/react-movie/issues)
 - [ ] 映画idから映画の[詳細情報取得](https://developer.themoviedb.org/reference/movie-details)及び画面表示
 
 - [ ] 映画詳細情報のモーダル実装
