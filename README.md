@@ -52,11 +52,14 @@
 
 - [x] 映画idから映画の[詳細情報取得](https://developer.themoviedb.org/reference/movie-details)及び画面表示
 
+- [x] 映画詳細情報のモーダル実装
+
+- [x] 映画詳細情報の画面デザイン
+
 ### [実装予定(Github Issues)](https://github.com/ByeongGwan-Seo/react-movie/issues)
 
-- [ ] 映画詳細情報のモーダル実装
-
-- [ ] 映画詳細情報の画面デザイン
+- [ ] Tv Shows画面実装
+- [ ] 検索機能追加
 
 # 🤝 開発用ルール
 
