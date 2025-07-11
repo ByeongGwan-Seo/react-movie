@@ -14,6 +14,8 @@
 #### 適用後
 ![KakaoTalk_20250711_162312813](https://github.com/user-attachments/assets/a91fa178-0dc4-41ca-8d07-61bc3cede55b)
 ![KakaoTalk_20250711_162345277](https://github.com/user-attachments/assets/ceb53b0c-9f1b-414e-baff-168b6b226891)
+![KakaoTalk_20250711_163325894](https://github.com/user-attachments/assets/e80211a6-5cf8-41c7-aab6-7c76d3ef1a24)
+
 
 [配信リンクはこちらへ(日本語対応)](https://react-movie-rosy.vercel.app/)
 
