@@ -14,6 +14,12 @@ const Nav = styled(motion.nav)`
   font-size: 14px;
   padding: 20px 60px;
   color: white;
+
+  @media screen and (max-width: 768px) {
+    position: fixed;
+    top: 0;
+    padding: 20px 10px;
+  }
 `;
 
 const navVariants = {

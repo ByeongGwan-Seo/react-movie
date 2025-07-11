@@ -28,6 +28,17 @@ export const Modal = styled(motion.div)`
   border-radius: 5px;
   overflow: auto;
   z-index: 999 !important;
+
+  @media screen and (max-width: 768px) {
+    width: 90vw;
+    height: 80vh;
+    border-radius: 10px;
+  }
+
+  @media screen and (max-width: 480px) {
+    width: 95vw;
+    height: 85vh;
+  }
 `;
 
 export const ModalPoster = styled.div.withConfig({
@@ -45,6 +56,10 @@ export const ModalPoster = styled.div.withConfig({
   background-position: center center;
   @media screen and (max-width: 1536px) {
     height: 350px;
+  }
+
+  @media screen and (max-width: 768px) {
+    height: 300px;
   }
 `;
 
@@ -72,6 +87,11 @@ export const PosterTitle = styled.div`
     height: 40px;
     margin-bottom: 25px;
   }
+
+  @media screen and (max-width: 768px) {
+    padding: 0 25px;
+    margin-bottom: 12px;
+  }
 `;
 
 export const PosterMiniTitle = styled.div`
@@ -85,6 +105,11 @@ export const PosterMiniTitle = styled.div`
   @media screen and (max-width: 1536px) {
     font-size: 14px;
   }
+
+  @media screen and (max-width: 768px) {
+    font-size: 20px;
+    padding: 0 30px;
+  }
 `;
 
 export const DetailContentsWrapper = styled.div`
@@ -93,6 +118,9 @@ export const DetailContentsWrapper = styled.div`
   top: -90px;
   padding: 0px 32px;
   height: auto;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 export const LeftColumn = styled.div`

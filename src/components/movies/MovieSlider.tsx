@@ -2,7 +2,7 @@ import { AnimatePresence } from "motion/react";
 import { makeImagePath } from "../../utils";
 import * as HomeStyle from "../../styled-components/home/StyledHome";
 import type { GetMoviesResult } from "../../apis/movies";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory, useRouteMatch } from "react-router-dom";
 import MovieDetail from "./MovieDetail";
 
@@ -93,7 +93,25 @@ function MovieSlider({ data, title, category }: MovieSliderProps) {
   const toggleLeaving = () => setLeaving((prev) => !prev);
 
   // スライダーの一行に表示する画像数(現在６個固定)
-  const offset = 6;
+  const [offset, setOffset] = useState(6);
+
+  useEffect(() => {
+    const updateOffset = () => {
+      if (window.innerWidth < 480) {
+        setOffset(3);
+      } else if (window.innerWidth < 768) {
+        setOffset(3);
+      } else if (window.innerWidth < 1024) {
+        setOffset(4);
+      } else {
+        setOffset(6);
+      }
+    };
+
+    updateOffset();
+    window.addEventListener("resize", updateOffset);
+    return () => window.removeEventListener("resize", updateOffset);
+  }, []);
 
   const nextIndex = () => {
     if (data) {

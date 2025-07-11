@@ -47,16 +47,6 @@ function MovieDetail({ id, category }: MovieDetailProps) {
     refetchCredit();
   }, [id, refetchDetail, refetchCredit]);
 
-  useEffect(() => {
-    if (creditData) {
-      const loadedActors =
-        creditData?.cast
-          .filter((c) => c.known_for_department === "Acting")
-          .slice(0, 5) ?? [];
-      console.log("✅ 로드된 Directors: ", loadedActors);
-    }
-  }, [creditData]);
-
   const onClickOverlay = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
       history.goBack();

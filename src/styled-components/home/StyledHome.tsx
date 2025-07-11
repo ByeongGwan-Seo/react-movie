@@ -50,12 +50,23 @@ export const Banner = styled.div.withConfig({
     ),
     url(${(props) => props.bgPhoto});
   background-size: cover;
+  background-position: center center;
+
+  @media screen and (max-width: 768px) {
+    padding: 20px;
+    height: 70vh;
+  }
 `;
 
 export const Title = styled.h2`
   font-size: 72px;
   margin-bottom: 24px;
   font-weight: bold;
+
+  @media screen and (max-width: 768px) {
+    font-size: 48px;
+    margin-bottom: 18px;
+  }
 `;
 
 /**
@@ -69,6 +80,11 @@ export const Title = styled.h2`
 export const OverView = styled.p`
   font-size: 28px;
   width: 50%;
+
+  @media screen and (max-width: 768px) {
+    font-size: 16px;
+    width: 70%;
+  }
 `;
 
 export const Slider = styled.div`
@@ -76,6 +92,10 @@ export const Slider = styled.div`
   position: relative;
   top: -100px;
   margin-bottom: 100px;
+
+  @media screen and (max-width: 768px) {
+    top: -50px;
+  }
 `;
 
 export const Row = styled(motion.div)`
@@ -87,6 +107,10 @@ export const Row = styled(motion.div)`
   left: 0;
   right: 0;
   margin: 0 auto;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
 
 export const Box = styled(motion.div).withConfig({
@@ -120,10 +144,12 @@ export const Info = styled(motion.div)`
 `;
 
 export const PrevBtn = styled.div`
+  display: flex;
+  align-items: center;
   width: 30px;
   height: 30px;
   top: 130px;
-  left: 15px;
+  left: 20px;
   position: absolute;
   svg {
     fill: rgb(238, 238, 238);
@@ -133,16 +159,19 @@ export const PrevBtn = styled.div`
   }
   z-index: 1;
   cursor: pointer;
-  @media screen and (max-width: 1536px) {
-    top: 90px;
+  @media screen and (max-width: 768px) {
+    top: 50px;
+    height: inherit;
   }
 `;
 
 export const NextBtn = styled.div`
+  display: flex;
+  align-items: center;
   width: 30px;
   height: 30px;
   top: 130px;
-  right: 15px;
+  right: 20px;
   position: absolute;
   svg {
     fill: rgb(238, 238, 238);
@@ -152,8 +181,9 @@ export const NextBtn = styled.div`
   }
   z-index: 1;
   cursor: pointer;
-  @media screen and (max-width: 1536px) {
-    top: 90px;
+  @media screen and (max-width: 768px) {
+    top: 50px;
+    height: inherit;
   }
 `;
 
@@ -163,4 +193,7 @@ export const SliderTitle = styled.h1`
   margin-bottom: 20px;
   font-weight: bold;
   margin-left: 45px;
+  @media screen and (max-width: 768px) {
+    margin-left: 10px;
+  }
 `;
