@@ -16,7 +16,6 @@ const Nav = styled(motion.nav)`
   color: white;
 
   @media screen and (max-width: 768px) {
-    z-index: 1000;
     position: fixed;
     top: 0;
     padding: 20px 10px;
