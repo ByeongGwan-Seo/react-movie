@@ -95,6 +95,7 @@ export const Box = styled(motion.div).withConfig({
   height: 200px;
   background-image: url(${(props) => props.bgPhoto});
   background-size: cover;
+  cursor: pointer;
   background-position: center center;
   &:first-child {
     transform-origin: center left;

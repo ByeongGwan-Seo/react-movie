@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import { getMovies } from "../apis/movie_series_api";
-import type { GetMoviesResult } from "../apis/movie_series_api";
+import { getMovies } from "../apis/movies";
+import type { GetMoviesResult } from "../apis/movies";
 import { makeImagePath } from "../utils";
-import * as HomeStyle from "../styled-components/StyledHome";
+import * as HomeStyle from "../styled-components/home/StyledHome";
 import MovieSlider from "../components/movies/MovieSlider";
 
 function Home() {
@@ -61,9 +61,13 @@ function Home() {
           </HomeStyle.Banner>
 
           {/*スライダー*/}
-          <MovieSlider data={now_data} title="Now Playing" />
-          <MovieSlider data={pop_data} title="Popular" />
-          <MovieSlider data={top_data} title="Top Rated" />
+          <MovieSlider
+            data={now_data}
+            title="Now Playing"
+            category="now_playing"
+          />
+          <MovieSlider data={pop_data} title="Popular" category="popular" />
+          <MovieSlider data={top_data} title="Top Rated" category="top_rated" />
         </>
       )}
     </HomeStyle.Wrapper>
