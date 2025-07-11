@@ -7,6 +7,14 @@
 ### 詳細情報表示挙動
 ![NetflixClone-Chrome2025-07-1114-37-21-ezgif com-resize](https://github.com/user-attachments/assets/651a21a2-6a39-4575-befc-ea65ef59b00b)
 
+### モバイル反応型デザイン
+#### 適用前
+![KakaoTalk_20250711_162312813_02](https://github.com/user-attachments/assets/48434725-11aa-4146-bee8-4225da9a8f17)
+![KakaoTalk_20250711_162312813_01](https://github.com/user-attachments/assets/30470659-679e-46a9-ad01-0d1ffab1591c)
+#### 適用後
+![KakaoTalk_20250711_162312813](https://github.com/user-attachments/assets/a91fa178-0dc4-41ca-8d07-61bc3cede55b)
+![KakaoTalk_20250711_162345277](https://github.com/user-attachments/assets/ceb53b0c-9f1b-414e-baff-168b6b226891)
+
 [配信リンクはこちらへ(日本語対応)](https://react-movie-rosy.vercel.app/)
 
 # 🛠️ 技術スタック
