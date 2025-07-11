@@ -59,6 +59,7 @@ body {
   color:${(props) => props.theme.white.darker};
   line-height: 1.2;
   background-color: black;
+  overflow-x: hidden;
   /* height: 150vh; */
 }
 html::-webkit-scrollbar {
