@@ -1,12 +1,25 @@
 import { motion } from "motion/react";
 import styled from "styled-components";
 
+// export const overlayVariants = {
+//   hidden: { opacity: 0 },
+//   visible: { opacity: 0.4 },
+//   exit: { opacity: 0 },
+// };
+
+export const modalVariants = {
+  initial: { opacity: 0 },
+  click: { opacity: 1, transition: { duration: 0.3 } },
+  exit: { opacity: 0 },
+};
+
 export const Overlay = styled(motion.div)`
   position: fixed;
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: background-color 0.3s ease;
   z-index: 2;
 `;
 

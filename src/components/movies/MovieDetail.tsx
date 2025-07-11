@@ -36,19 +36,17 @@ function MovieDetail({ id, category }: MovieDetailProps) {
 
   return (
     <>
-      {detailData && (
-        <AnimatePresence>
+      <AnimatePresence>
+        {detailData && (
           <ModalStyle.Overlay
             onClick={onClickOverlay}
-            // initial="hidden"
-            // animate="visible"
-            // exit="exit"
+            // variants={ModalStyle.overlayVariants}
           >
             <ModalStyle.Modal
-              //   initial="initial"
-              //   animate="click"
-              //   exit="exit"
-              layoutId={category + "_" + id}
+              variants={ModalStyle.modalVariants}
+              initial="initial"
+              animate="click"
+              exit="exit"
             >
               {detailLoading ? null : (
                 <ModalStyle.ModalPoster
@@ -60,8 +58,8 @@ function MovieDetail({ id, category }: MovieDetailProps) {
               )}
             </ModalStyle.Modal>
           </ModalStyle.Overlay>
-        </AnimatePresence>
-      )}
+        )}
+      </AnimatePresence>
     </>
   );
 }

@@ -56,6 +56,13 @@ const boxVariants = {
       duration: 0.1,
     },
   },
+  exit: {
+    opacity: 0,
+    scale: 0.8,
+    transition: {
+      duration: 0.2,
+    },
+  },
 };
 
 const infoVariants = {
@@ -124,7 +131,6 @@ function MovieSlider({ data, title, category }: MovieSliderProps) {
     .slice(offset * index, offset * index + offset);
 
   const onBoxClicked = (movieId: number) => {
-    console.log(`movie id is ${movieId}`);
     history.push(`/movies/${movieId}`);
   };
 
@@ -150,9 +156,9 @@ function MovieSlider({ data, title, category }: MovieSliderProps) {
               resultsData.map((movie) => (
                 <HomeStyle.Box
                   key={category + movie.id}
-                  layoutId={category + "_" + movie.id}
                   whileHover="hover"
                   initial="normal"
+                  exit="exit"
                   variants={boxVariants}
                   transition={{ type: "tween" }}
                   bgPhoto={makeImagePath(
@@ -186,7 +192,9 @@ function MovieSlider({ data, title, category }: MovieSliderProps) {
       </HomeStyle.Slider>
 
       {movieMatch ? (
-        <MovieDetail id={movieMatch.params.movieId} category={category} />
+        <>
+          <MovieDetail id={movieMatch.params.movieId!} category={category} />
+        </>
       ) : null}
     </>
   );
