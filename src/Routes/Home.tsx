@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { getMovies } from "../apis/movie_series_api";
-import type { GetMoviesResult } from "../apis/movie_series_api";
+import { getMovies } from "../apis/movies";
+import type { GetMoviesResult } from "../apis/movies";
 import { makeImagePath } from "../utils";
 import * as HomeStyle from "../styled-components/home/StyledHome";
 import MovieSlider from "../components/movies/MovieSlider";

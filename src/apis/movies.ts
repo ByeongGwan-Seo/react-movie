@@ -33,9 +33,35 @@ export interface GetMovieDetailResult {
   ];
   original_title: string;
   poster_path: string;
+  overview: string;
   release_date: string;
   tagline: string;
   title: string;
+  vote_average: number;
+  vote_count: number;
+}
+
+interface MovieCastResult {
+  known_for_department: string;
+  name: string;
+  original_name: string;
+  profile_path: string;
+  character: string;
+}
+
+interface MovieCrewResult {
+  known_for_department: string;
+  name: string;
+  department: string;
+  original_name: string;
+  profile_path: string;
+  job: string;
+}
+
+export interface MovieCreditResult {
+  id: number;
+  cast: MovieCastResult[];
+  crew: MovieCrewResult[];
 }
 
 const options = {
@@ -83,4 +109,10 @@ export function getMovieDetails(id: string) {
     `${BASE_URL}/movie/${id}?language=ja-JP&region=jp&api_key=${API_KEY}`,
     options
   ).then((response) => response.json());
+}
+
+export function getMovieCredits(id: string) {
+  return fetch(`${BASE_URL}/movie/${id}/credits?language=ja-JP`, options).then(
+    (response) => response.json()
+  );
 }

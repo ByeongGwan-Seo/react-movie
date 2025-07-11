@@ -1,7 +1,7 @@
 import { AnimatePresence } from "motion/react";
 import { makeImagePath } from "../../utils";
 import * as HomeStyle from "../../styled-components/home/StyledHome";
-import type { GetMoviesResult } from "../../apis/movie_series_api";
+import type { GetMoviesResult } from "../../apis/movies";
 import { useState } from "react";
 import { useHistory, useRouteMatch } from "react-router-dom";
 import MovieDetail from "./MovieDetail";
