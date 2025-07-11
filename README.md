@@ -4,6 +4,9 @@
 # デモ
 ![NetflixClone-Chrome2025-07-1010-23-02-ezgif com-crop](https://github.com/user-attachments/assets/f94e989f-5a1d-42cb-b3a4-57a7bc268a28)
 
+### 詳細情報表示挙動
+![NetflixClone-Chrome2025-07-1114-37-21-ezgif com-resize](https://github.com/user-attachments/assets/651a21a2-6a39-4575-befc-ea65ef59b00b)
+
 [配信リンクはこちらへ(日本語対応)](https://react-movie-rosy.vercel.app/)
 
 # 🛠️ 技術スタック
@@ -37,8 +40,9 @@
 
 - [x] ヘッダーのスクロールによるアニメーション
 
+- [x] 映画idから映画の[詳細情報取得](https://developer.themoviedb.org/reference/movie-details)及び画面表示
+
 ### [実装予定(Github Issues)](https://github.com/ByeongGwan-Seo/react-movie/issues)
-- [ ] 映画idから映画の[詳細情報取得](https://developer.themoviedb.org/reference/movie-details)及び画面表示
 
 - [ ] 映画詳細情報のモーダル実装
 
