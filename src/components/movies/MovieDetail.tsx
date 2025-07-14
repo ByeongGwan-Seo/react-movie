@@ -11,6 +11,7 @@ import {
 import { useEffect } from "react";
 import { makeImagePath } from "../../utils/utils";
 import styled from "styled-components";
+import EvaluateBtn from "./EvaluateBtn";
 
 type MovieDetailProps = {
   category?: string;
@@ -112,6 +113,7 @@ function MovieDetail({ id, category }: MovieDetailProps) {
                             {genre.name}
                           </ModalStyle.Genre>
                         ))}
+                        <EvaluateBtn />
                       </ModalStyle.InfoTop>
                       <ModalStyle.Overview>
                         {detailData.overview ||
