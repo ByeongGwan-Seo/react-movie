@@ -152,6 +152,11 @@ function MovieSlider({ data, title, category }: MovieSliderProps) {
     history.push(`/movies/${movieId}`);
   };
 
+  const matchedId = movieMatch?.params.movieId;
+  const movieIds = data?.results.map((m) => m.id.toString()) ?? [];
+
+  const shouldShowDetail = matchedId && movieIds.includes(matchedId);
+
   return (
     <>
       <HomeStyle.Slider>
@@ -209,11 +214,7 @@ function MovieSlider({ data, title, category }: MovieSliderProps) {
         </HomeStyle.NextBtn>
       </HomeStyle.Slider>
 
-      {movieMatch ? (
-        <>
-          <MovieDetail id={movieMatch.params.movieId!} category={category} />
-        </>
-      ) : null}
+      {shouldShowDetail && <MovieDetail id={matchedId} category={category} />}
     </>
   );
 }

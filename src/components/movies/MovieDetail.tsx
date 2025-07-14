@@ -113,7 +113,12 @@ function MovieDetail({ id, category }: MovieDetailProps) {
                             {genre.name}
                           </ModalStyle.Genre>
                         ))}
-                        <EvaluateBtn />
+                        <EvaluateBtn
+                          movieId={detailData.id}
+                          original_title={detailData.original_title}
+                          backdrop_path={detailData.backdrop_path}
+                          poster_path={detailData.poster_path}
+                        />
                       </ModalStyle.InfoTop>
                       <ModalStyle.Overview>
                         {detailData.overview ||
