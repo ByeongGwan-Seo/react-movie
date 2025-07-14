@@ -1,5 +1,5 @@
 import { AnimatePresence } from "motion/react";
-import { makeImagePath } from "../../utils";
+import { makeImagePath } from "../../utils/utils";
 import * as HomeStyle from "../../styled-components/home/StyledHome";
 import type { GetMoviesResult } from "../../apis/movies";
 import { useEffect, useState } from "react";

@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./Routes/Home";
 import Tv from "./Routes/Tv";
 import Header from "./components/Header";
+import Profile from "./Routes/Profile";
 
 /* 
 pathは必ず名詞で構成してください。do.searchかgo.tvなどは使わないで。。。
@@ -17,6 +18,9 @@ function App() {
         <Route path="/search"></Route>
         <Route path={["/", "/movies/:movieId"]}>
           <Home />
+        </Route>
+        <Route path="/profile">
+          <Profile />
         </Route>
       </Switch>
     </Router>

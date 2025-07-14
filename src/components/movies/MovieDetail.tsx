@@ -9,7 +9,7 @@ import {
   type MovieCreditResult,
 } from "../../apis/movies";
 import { useEffect } from "react";
-import { makeImagePath } from "../../utils";
+import { makeImagePath } from "../../utils/utils";
 import styled from "styled-components";
 
 type MovieDetailProps = {
