@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getMovies } from "../apis/movies";
 import type { GetMoviesResult } from "../apis/movies";
-import { makeImagePath } from "../utils";
+import { makeImagePath } from "../utils/utils";
 import * as HomeStyle from "../styled-components/home/StyledHome";
 import MovieSlider from "../components/movies/MovieSlider";
 

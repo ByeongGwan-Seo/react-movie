@@ -2,6 +2,11 @@ import styled from "styled-components";
 import { motion, useAnimation, useScroll } from "motion/react";
 import { Link, useRouteMatch } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
+import { userState } from "../atoms/userAtom";
+// import type UserNamePlate from "./header/UserNamePlate";
+import UserNamePlate from "./header/UserNamePlate";
+import SignInBtn from "./header/SignInBtn";
 
 // TODO: リファクタリング必要、必要以上にコードが長い
 const Nav = styled(motion.nav)`
@@ -108,6 +113,7 @@ const Input = styled(motion.input)`
 
 function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
+  const user = useRecoilValue(userState);
   const homeMatch = useRouteMatch("/");
   const tvMatch = useRouteMatch("/tv");
   const inputAnimation = useAnimation();
@@ -189,6 +195,7 @@ function Header() {
             placeholder="Search for movie or tv show..."
           />
         </Search>
+        {user ? <UserNamePlate /> : <SignInBtn />}
       </Col>
     </Nav>
   );
