@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useRecoilValue } from "recoil";
 import { userState } from "../../atoms/userAtom";
 import SignOutBtn from "./SignOutBtn";
+import { Link } from "react-router-dom";
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
@@ -24,6 +25,15 @@ const UserName = styled.span`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-left: 8px;
+`;
+
+const ProfileLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 function UserNamePlate() {
@@ -33,8 +43,10 @@ function UserNamePlate() {
 
   return (
     <Wrapper>
-      {user.photoURL && <Avatar src={user.photoURL} alt="user" />}
-      <UserName>{user.displayName || "사용자"}</UserName>
+      <ProfileLink to="/profile">
+        {user.photoURL && <Avatar src={user.photoURL} alt="user" />}
+        <UserName>{user.displayName || "사용자"}</UserName>
+      </ProfileLink>
       <SignOutBtn />
     </Wrapper>
   );
