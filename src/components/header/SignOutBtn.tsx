@@ -2,6 +2,7 @@ import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import { userState } from "../../atoms/userAtom";
 import { logoutUser } from "../../utils/firebaseAuth";
+import React from "react";
 
 const SignOut = styled.button`
   display: flex;
@@ -26,4 +27,4 @@ function SignOutBtn() {
   return <SignOut onClick={handleSignOut}>ログアウト</SignOut>;
 }
 
-export default SignOutBtn;
+export default React.memo(SignOutBtn);

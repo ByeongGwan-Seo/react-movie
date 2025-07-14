@@ -2,6 +2,8 @@ import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
 import { userState } from "../../atoms/userAtom";
 import { loginWithGoogle } from "../../utils/firebaseAuth";
+import { useEffect } from "react";
+import React from "react";
 
 const SignIn = styled.button`
   display: flex;
@@ -19,6 +21,10 @@ const SignIn = styled.button`
 
 function SignInBtn() {
   const setUser = useSetRecoilState(userState);
+
+  useEffect(() => {
+    console.log("it's rendered");
+  });
 
   const handleSignIn = async () => {
     try {
@@ -38,4 +44,4 @@ function SignInBtn() {
   return <SignIn onClick={handleSignIn}>ログイン</SignIn>;
 }
 
-export default SignInBtn;
+export default React.memo(SignInBtn);
