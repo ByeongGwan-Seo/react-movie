@@ -20,6 +20,7 @@ type MovieMeta = {
   comment?: string;
   rating?: number;
   updatedAt?: string;
+  movieId: number;
 };
 
 export const fetchEvaluationForMovie = async (
@@ -74,6 +75,7 @@ export const persistEvaluation = async (
 
   await setDoc(newRef, {
     ...data,
+    movieId,
     updatedAt: new Date().toISOString(),
   });
 };

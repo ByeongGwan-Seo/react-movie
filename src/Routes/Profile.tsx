@@ -1,5 +1,7 @@
+import MovieList from "../components/profiles/MovieList";
+
 function Profile() {
-  return <h1>profile here</h1>;
+  return <MovieList />;
 }
 
 export default Profile;
