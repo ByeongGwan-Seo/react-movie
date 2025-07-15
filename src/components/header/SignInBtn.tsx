@@ -12,7 +12,7 @@ const SignIn = styled.button`
   height: 35px;
   padding: 8px;
   cursor: pointer;
-  color: #23c0db;
+  color: ${(props) => props.theme.red};
   background-color: ${(props) => props.theme.white};
   border-radius: 12px;
   border-color: transparent;
