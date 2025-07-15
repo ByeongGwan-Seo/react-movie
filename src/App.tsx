@@ -18,7 +18,7 @@ function App() {
           <Tv />
         </Route>
         <Route path="/search"></Route>
-        <Route path="/profile">
+        <Route path={["/profile", "profile/:evalType/:movieId"]}>
           <Profile />
         </Route>
         <Route path={["/", "/movies/:movieId"]}>

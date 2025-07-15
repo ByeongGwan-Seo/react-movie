@@ -1,31 +1,11 @@
-import { AnimatePresence } from "motion/react";
-import { makeImagePath } from "../../utils/utils";
-import * as HomeStyle from "../../styled-components/home/StyledHome";
-import type { GetMoviesResult } from "../../apis/movies";
 import { useEffect, useState } from "react";
 import { useHistory, useRouteMatch } from "react-router-dom";
-import MovieDetail from "./MovieDetail";
+import * as ProfileStyle from "../../styled-components/home/StyledProfile";
+import { AnimatePresence } from "motion/react";
+import type { MovieMeta } from "../../apis/profiles";
+import { makeImagePath } from "../../utils/utils";
+import MovieDetail from "../movies/MovieDetail";
 
-/**
- * スライダーのアニメーション状態を定義するvariants。
- * ページの移動方向に応じて、左右にスライドする動きを制御します。
- *
- * @type {Variants}
- * @param {boolean} isNext - 次ページへ移動する場合は `true`、前ページへ戻る場合は `false`。
- *
- * @property hidden - 初期状態。移動方向に応じて左右の画面外から登場。
- * @property visible - 表示状態。中央に固定。
- * @property exit - アニメーション終了時。反対方向にスライドして退場。
- *
- * @example
- * <motion.div
- *   custom={isNext}
- *   variants={rowVariants}
- *   initial="hidden"
- *   animate="visible"
- *   exit="exit"
- * />
- */
 const rowVariants = {
   hidden: (isNext: boolean) => {
     return {
@@ -76,15 +56,17 @@ const infoVariants = {
   },
 };
 
-type MovieSliderProps = {
-  data: GetMoviesResult | undefined;
+type ProfileSliderProps = {
+  data: MovieMeta[] | undefined;
   title: string;
-  category: string;
+  evalType: "liked" | "disliked" | "want_to_see";
 };
 
-function MovieSlider({ data, title, category }: MovieSliderProps) {
+function ProfileSlider({ data, title, evalType }: ProfileSliderProps) {
   const history = useHistory();
-  const movieMatch = useRouteMatch<{ movieId: string }>("/movies/:movieId");
+  const evaluationMatch = useRouteMatch<{ evalType: string; movieId: string }>(
+    "/profile/:evalType/:movieId"
+  );
   const [index, setIndex] = useState(0);
   const [isNext, setIsNext] = useState(true);
 
@@ -94,6 +76,7 @@ function MovieSlider({ data, title, category }: MovieSliderProps) {
 
   // スライダーの一行に表示する画像数(現在６個固定)
   const [offset, setOffset] = useState(6);
+  console.log("data:", data);
 
   useEffect(() => {
     const updateOffset = () => {
@@ -118,7 +101,7 @@ function MovieSlider({ data, title, category }: MovieSliderProps) {
       if (leaving) {
         return;
       } else {
-        const totalMovies = data.results.length;
+        const totalMovies = data.length;
         const maxIndex = Math.floor(totalMovies / offset) - 1;
 
         toggleLeaving();
@@ -133,7 +116,7 @@ function MovieSlider({ data, title, category }: MovieSliderProps) {
       if (leaving) {
         return;
       } else {
-        const totalMovies = data.results.length;
+        const totalMovies = data.length;
         const maxIndex = Math.floor(totalMovies / offset) - 1;
 
         toggleLeaving();
@@ -144,41 +127,38 @@ function MovieSlider({ data, title, category }: MovieSliderProps) {
   };
 
   //スライダーのイメージ枚数ロジック
-  const resultsData = data?.results
-    .slice(1)
-    .slice(offset * index, offset * index + offset);
+  const resultsData = data?.slice(offset * index, offset * index + offset);
 
   const onBoxClicked = (movieId: number) => {
-    history.push(`/movies/${movieId}`);
+    history.push(`/profile/${evalType}/${movieId}`);
   };
 
-  const matchedId = movieMatch?.params.movieId;
-  const movieIds = data?.results.map((m) => m.id.toString()) ?? [];
-
+  const matchedId = evaluationMatch?.params.movieId;
+  const movieIds = data?.map((movie) => movie.movieId.toString()) ?? [];
   const shouldShowDetail = matchedId && movieIds.includes(matchedId);
 
   return (
     <>
-      <HomeStyle.Slider>
-        <HomeStyle.SliderTitle>{title}</HomeStyle.SliderTitle>
+      <ProfileStyle.Slider>
+        <ProfileStyle.SliderTitle>{`${title}`}</ProfileStyle.SliderTitle>
         <AnimatePresence
           initial={false}
           onExitComplete={toggleLeaving}
           custom={isNext}
         >
-          <HomeStyle.Row
+          <ProfileStyle.Row
             variants={rowVariants}
             initial="hidden"
             animate="visible"
             exit="exit"
-            key={category + index}
+            key={index}
             custom={isNext}
             transition={{ type: "tween", ease: "linear", duration: 0.5 }}
           >
             {resultsData &&
               resultsData.map((movie) => (
-                <HomeStyle.Box
-                  key={category + movie.id}
+                <ProfileStyle.Box
+                  key={movie.movieId}
                   whileHover="hover"
                   initial="normal"
                   exit="exit"
@@ -188,35 +168,37 @@ function MovieSlider({ data, title, category }: MovieSliderProps) {
                     movie.backdrop_path || movie.poster_path,
                     "w500"
                   )}
-                  onClick={() => onBoxClicked(movie.id)}
+                  onClick={() => onBoxClicked(movie.movieId)}
                 >
-                  <HomeStyle.Info variants={infoVariants}>
-                    <h4>
-                      {movie.original_language === "en"
-                        ? movie.title
-                        : movie.original_title}
-                    </h4>
-                  </HomeStyle.Info>
-                </HomeStyle.Box>
+                  <ProfileStyle.Info variants={infoVariants}>
+                    <h4>{movie.title}</h4>
+                  </ProfileStyle.Info>
+                </ProfileStyle.Box>
               ))}
-          </HomeStyle.Row>
+          </ProfileStyle.Row>
         </AnimatePresence>
 
-        <HomeStyle.PrevBtn onClick={prevIndex}>
+        <ProfileStyle.PrevBtn onClick={prevIndex}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
             <path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 278.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z" />
           </svg>
-        </HomeStyle.PrevBtn>
-        <HomeStyle.NextBtn onClick={nextIndex}>
+        </ProfileStyle.PrevBtn>
+        <ProfileStyle.NextBtn onClick={nextIndex}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
             <path d="M342.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L274.7 256 105.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z" />
           </svg>
-        </HomeStyle.NextBtn>
-      </HomeStyle.Slider>
+        </ProfileStyle.NextBtn>
+      </ProfileStyle.Slider>
 
-      {shouldShowDetail && <MovieDetail id={matchedId} category={category} />}
+      {shouldShowDetail && (
+        <MovieDetail
+          id={matchedId || ""}
+          evalType={evalType}
+          category={evalType}
+        />
+      )}
     </>
   );
 }
 
-export default MovieSlider;
+export default ProfileSlider;

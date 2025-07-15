@@ -11,10 +11,12 @@ import {
 import { useEffect } from "react";
 import { makeImagePath } from "../../utils/utils";
 import styled from "styled-components";
+import EvaluateBtn from "./EvaluateBtn";
 
 type MovieDetailProps = {
   category?: string;
   id: string;
+  evalType?: string;
 };
 
 const CreditTitle = styled.h2`
@@ -112,6 +114,12 @@ function MovieDetail({ id, category }: MovieDetailProps) {
                             {genre.name}
                           </ModalStyle.Genre>
                         ))}
+                        <EvaluateBtn
+                          movieId={detailData.id}
+                          original_title={detailData.original_title}
+                          backdrop_path={detailData.backdrop_path}
+                          poster_path={detailData.poster_path}
+                        />
                       </ModalStyle.InfoTop>
                       <ModalStyle.Overview>
                         {detailData.overview ||
