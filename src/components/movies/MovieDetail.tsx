@@ -16,6 +16,7 @@ import EvaluateBtn from "./EvaluateBtn";
 type MovieDetailProps = {
   category?: string;
   id: string;
+  evalType?: string;
 };
 
 const CreditTitle = styled.h2`

@@ -10,7 +10,7 @@ import type { EvaluationType } from "../utils/evaluationUtil";
 
 const db = getFirestore(app);
 
-type MovieMeta = {
+export type MovieMeta = {
   title: string;
   poster_path: string;
   backdrop_path?: string;
